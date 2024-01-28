@@ -22,68 +22,69 @@
         </div>
     </section>
     <script>
-        src=
-        crossorigin="anonymus"
         let stopwatch;
-        let isRunning = false;
-        let startTime, endTime;
-        let savedTimes = [];
+let isRunning = false;
+let startTime, lastUpdateTime;
+let savedTimes = [];
 
-        document.addEventListener("DOMContentLoaded", function() {
-            // Call generateScramble when the page loads
-            generateScramble();
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    // Call generateScramble when the page loads
+    generateScramble();
+});
 
-        document.addEventListener("keydown", function(event) {
-            if (event.code === "Space") {
-                event.preventDefault();
-            if (isRunning) {
-                stopStopwatch();
-            } else {
-                startStopwatch();
-            }
-            }
-        });
-
-
-        function startStopwatch() {
-            if (!isRunning) {
-                clearInterval(stopwatch);
-                document.querySelector(".stopwatchDisplay").textContent = "0.00";
-                startTime = new Date();
-                stopwatch = setInterval(updateStopwatch, 10);
-                isRunning = true;
-            }
+document.addEventListener("keydown", function(event) {
+    if (event.code === "Space") {
+        event.preventDefault();
+        if (isRunning) {
+            stopStopwatch();
+        } else {
+            startStopwatch();
         }
+    }
+});
 
-        function stopStopwatch() {
-            if (isRunning) {
-                endTime = new Date();
-                clearInterval(stopwatch);
-                updateStopwatch();
-                isRunning = false;
-                saveTime(); // Save the current time in the array
-                generateScramble(); // Generate a new scramble when stopping the stopwatch
-                showTimes(); // Show the times in the list
-            }
-        }
+function startStopwatch() {
+    if (!isRunning) {
+        clearInterval(stopwatch);
+        document.querySelector(".stopwatchDisplay").textContent = "0.00";
+        startTime = new Date();
+        lastUpdateTime = startTime;
+        stopwatch = requestAnimationFrame(updateStopwatch);
+        isRunning = true;
+    }
+}
 
-        function updateStopwatch() {
-            if (isRunning) {
-                const elapsedTime = (new Date() - startTime) / 1000;
-                document.querySelector(".stopwatchDisplay").textContent = elapsedTime.toFixed(2);
-            } else if (startTime && endTime) {
-                const totalTime = (endTime - startTime) / 1000;
-                document.querySelector(".stopwatchDisplay").textContent = totalTime.toFixed(2);
-            }
-        }
+function stopStopwatch() {
+    if (isRunning) {
+        endTime = new Date();
+        clearInterval(stopwatch);
+        updateStopwatch();
+        isRunning = false;
+        saveTime(); // Save the current time in the array
+        generateScramble(); // Generate a new scramble when stopping the stopwatch
+        showTimes(); // Show the times in the list
+    }
+}
 
-        function saveTime() {
-            const savedTime = parseFloat(document.querySelector(".stopwatchDisplay").textContent);
-            savedTimes.push(savedTime);
-        }
+function updateStopwatch() {
+    if (isRunning) {
+        const currentTime = new Date();
+        const elapsedTime = (currentTime - startTime) / 1000;
+        document.querySelector(".stopwatchDisplay").textContent = elapsedTime.toFixed(2);
+        lastUpdateTime = currentTime;
+        stopwatch = requestAnimationFrame(updateStopwatch);
+    } else if (startTime && endTime) {
+        const totalTime = (endTime - startTime) / 1000;
+        document.querySelector(".stopwatchDisplay").textContent = totalTime.toFixed(2);
+    }
+}
 
-        function showTimes() {
+function saveTime() {
+    const savedTime = parseFloat(document.querySelector(".stopwatchDisplay").textContent);
+    savedTimes.push(savedTime);
+}
+
+function showTimes() {
     const timesListContainer = document.querySelector(".timesListContainer");
 
     // Limpiar el contenido existente
@@ -98,31 +99,94 @@
     });
 }
 
+function generateScramble() {
+    updateScramble();
+}
 
-        function generateScramble() {
-            updateScramble();
-        }
+function updateScramble() {
+    const moves = ["U", "U'", "D", "D'", "R", "R'", "L", "L'", "F", "F'", "B", "B'", "U2", "D2", "R2", "L2", "F2", "B2"];
+    const scramble = [];
+    let scrambleImagesContainer = document.querySelector(".scrambleImagesContainer");
 
-        function updateScramble() {
-            const moves = ["U", "U'", "D", "D'", "R", "R'", "L", "L'", "F", "F'", "B", "B'","U2","D2","R2","L2","F2","B2"];
-            const scramble = [];
+    for (let i = 0; i < 20; i++) {
+        let randomIndex;
 
-            for (let i = 0; i < 20; i++) {
-                const randomIndex = Math.floor(Math.random() * moves.length);
-                scramble.push(moves[randomIndex]);
-            }
+        do {
+            randomIndex = Math.floor(Math.random() * moves.length);
+        } while (
+            i > 0 &&
+            (scramble[i - 1] === moves[randomIndex] || scramble[i - 2] === moves[randomIndex])
+        ); // Evitar letras consecutivas iguales y repetición inmediata
 
-            const scrambleText = scramble.join(" ");
-            const scrambleElements = document.querySelectorAll(".scrambleText");
-            
-            scrambleElements.forEach(element => {
-                element.textContent = scrambleText;
-            });
-        }
+        scramble.push(moves[randomIndex]);
+    }
+
+    const scrambleText = scramble.join(" ");
+    const scrambleElements = document.querySelectorAll(".scrambleText");
+
+    scrambleElements.forEach((element) => {
+        element.textContent = scrambleText;
+    });
+}
+
+
+// Lógica para mostrar imágenes basadas en la secuencia de movimientos
+function updateScrambleVisual() {
+    // Limpiar el contenido existente
+    scrambleImagesContainer.innerHTML = "";
+
+    // Iterar sobre la secuencia de movimientos y mostrar las imágenes correspondientes
+    for (let move of moves) {
+        // Crear una nueva imagen y establecer el atributo src según el movimiento
+        let img = document.createElement("img");
+        img.src = `path-to-your-images/${move}.png`;
+        img.alt = move;
+
+        // Agregar la imagen al contenedor
+        scrambleImagesContainer.appendChild(img);
+    }
+}
+
+// Llamada a la función para actualizar la visualización de la mezcla
+updateScrambleVisual();
+
+
     </script>
 </body>
 </html>
 
+<!-- Agrega las imágenes para cada movimiento 
+<img id="U-img" src="path-to-your-images/U.png" alt="U">
+<img id="D-img" src="path-to-your-images/D.png" alt="D">
+<img id="R-img" src="path-to-your-images/R.png" alt="R">
+<img id="L-img" src="path-to-your-images/L.png" alt="L">
+<img id="F-img" src="path-to-your-images/F.png" alt="F">
+<img id="B-img" src="path-to-your-images/B.png" alt="B">
+
+<script>
+let moves = ["U", "D", "R", "L", "F", "B"];
+let scrambleImagesContainer = document.querySelector(".scrambleImagesContainer");
+
+// Lógica para mostrar imágenes basadas en la secuencia de movimientos
+function updateScrambleVisual() {
+    // Limpiar el contenido existente
+    scrambleImagesContainer.innerHTML = "";
+
+    // Iterar sobre la secuencia de movimientos y mostrar las imágenes correspondientes
+    for (let move of moves) {
+        // Crear una nueva imagen y establecer el atributo src según el movimiento
+        let img = document.createElement("img");
+        img.src = `path-to-your-images/${move}.png`;
+        img.alt = move;
+
+        // Agregar la imagen al contenedor
+        scrambleImagesContainer.appendChild(img);
+    }
+}
+
+// Llamada a la función para actualizar la visualización de la mezcla
+updateScrambleVisual();
+</script>-->
 
 
 
