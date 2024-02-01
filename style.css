@@ -103,33 +103,54 @@ body {
     font-size: 12px; /* Tamaño de fuente inicial al cargar la página */
 }
 
-
 .timesContainer {
     font-size: 25px;
-    height: 800px;
-    width: 400px; /* Ajusta el ancho del contenedor para mostrar dos hileras */
-    overflow-y: auto; /* Permitir el desplazamiento vertical */
+    width: 400px;
+    max-height: 600px;
+    overflow-y: auto;
     border: 1px solid #ccc;
     padding: 5px;
     margin-top: 10px;
+    display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     position: absolute;
-    top: 45%;
-    left: 0;
+    top: 40%;
+    left: 13%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9); /* Set a background color with some transparency */
+    z-index: 1000; /* Set a high z-index value */
 }
 
 .timeBox {
     background-color: #eee;
     padding: 5px;
     border-radius: 5px;
+    margin-right: 10px;
     margin-bottom: 10px;
-    flex: 0 0 calc(50% - 5px); /* Ajusta el ancho para dos cajas en una fila */
-    max-width: 100px; /* Máximo ancho para evitar expansión */
+    flex: 0 0 calc(30% - 10px);
+    max-width: 100px;
     overflow: hidden;
     box-shadow: 0 0 0 1px #ccc;
-    box-sizing: border-box; /* Ajusta el modelo de caja para incluir el padding y el border */
-    text-align: center; /* Centrar el contenido horizontalmente */
+    box-sizing: border-box;
+    text-align: center;
 }
+
+
+.timeBox {
+    background-color: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px; /* Add margin between time boxes */
+    margin-bottom: 10px;
+    flex: 0 0 calc(30% - 10px); /* Adjust width for three time boxes in a row */
+    max-width: 100px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px #ccc;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 
 
 
