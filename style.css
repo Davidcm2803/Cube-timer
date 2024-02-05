@@ -54,7 +54,6 @@ body {
 }
 
 
-
 .topbar {
     background-color: #333; 
     color: #fff;
@@ -73,6 +72,10 @@ body {
     color: #fff; 
     text-decoration: none; 
     margin: 0 10px; 
+}
+
+.icon{
+    
 }
 
 .scrambleText {
@@ -106,7 +109,7 @@ body {
 .timesContainer {
     font-size: 25px;
     width: 400px;
-    max-height: 600px;
+    max-height: 400px;
     overflow-y: auto;
     border: 1px solid #ccc;
     padding: 5px;

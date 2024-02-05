@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "Cube-timer",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Cube-timer",
+		"liveServer.settings.port": 5501
+	}
+}
