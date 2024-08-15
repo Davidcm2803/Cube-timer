@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,500;1,600&display=swap');
+
+
+body {
+    font-family: 'Poppins';       
+    margin: 0;
+    padding: 0; 
+    min-height: 100vh;
+    background-image: linear-gradient(80deg, rgb(5, 124, 172), rgb(199, 10, 114));
+    overflow: hidden;
+
+
+    
+}
+/*Background*/
+#up {
+    position: absolute;
+    height: 800px;
+    width: 800px;
+    border-radius: 50%;
+    background-image: linear-gradient(80deg, rgb(5, 124, 172), rgb(43, 247, 202, 0.5));
+    filter: blur(80px);
+    animation: down 60s linear infinite; /* Ajuste de duración y temporización */
+}
+
+#down {
+    position: absolute;
+    right: 0;
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background-image: linear-gradient(80deg, rgba(245, 207, 82, 0.8), rgb(199, 10, 114));
+    filter: blur(80px);
+    animation: up 45s linear infinite; /* Ajuste de duración y temporización */
+}
+
+#left {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background-image: linear-gradient(80deg, rgba(5, 124, 172), rgba(183, 253, 52, 0.8));
+    filter: blur(80px);
+    animation: left 45s 1s linear infinite; /* Ajuste de duración y temporización */
+}
+
+#right {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background-image: linear-gradient(80deg, rgba(26, 248, 18, 0.6), rgba(199, 10, 52, 0.8));
+    filter: blur(80px);
+    animation: right 60s 0.5s linear infinite; /* Ajuste de duración y temporización */
+}
+
+@keyframes down {
+    0%, 100% {
+        top: -100px; /* Ajuste de posición inicial */
+    }
+    70% {
+        top: 700px;
+    }
+}
+
+@keyframes up {
+    0%, 100% {
+        bottom: -100px; /* Ajuste de posición inicial */
+    }
+    70% {
+        bottom: 700px;
+    }
+}
+
+@keyframes left {
+    0%, 100% {
+        left: -100px; /* Ajuste de posición inicial */
+    }
+    70% {
+        left: 1300px;
+    }
+}
+
+@keyframes right {
+    0%, 100% {
+        right: -100px; /* Ajuste de posición inicial */
+    }
+    70% {
+        right: 1300px;
+    }
+}
+
+
+
+
+
+
+.topbar {
+    background-color: #333; 
+    color: #fff;
+    padding: 10px;
+    align-items: center; /* Alinea verticalmente al centro */
+    justify-content: flex-start; /* Justifica desde la parte superior */
+    width: 100%;
+    height: 10%;
+    top: 0;
+    left: 0; /* Asegura que empiece desde el borde izquierdo */
+    position: absolute;
+    display: flex; /* Hace que el contenedor sea flexible */
+}
+
+.topbar a {
+    color: #fff; 
+    text-decoration: none; 
+    margin: 0 10px; 
+}
+
+.scrambleText {
+    top: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); /* Centra horizontalmente */
+    font-size: 30px;
+}
+
+.stopwatchDisplay {
+    color: #fff;
+    font-size: 6rem;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto; /* Añade esta línea para centrar horizontalmente */
+    position: absolute; /* Añade esta línea para centrar verticalmente */
+    top: 0; bottom: 0; right: 0; left: 0; /* Añade esta línea para centrar verticalmente */
+}
+
+
+
+.scrambleText.inicial {
+    font-size: 12px; /* Tamaño de fuente inicial al cargar la página */
+}
+
+
+.timesContainer {
+    font-size: 25px;
+    height: 200px;
+    width: 220px; /* Ajusta el ancho del contenedor para mostrar dos hileras */
+    overflow-y: auto; /* Permitir el desplazamiento vertical */
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+.timeBox {
+    background-color: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    flex: 0 0 calc(50% - 5px); /* Ajusta el ancho para dos cajas en una fila */
+    max-width: 100px; /* Máximo ancho para evitar expansión */
+    overflow: hidden;
+    box-shadow: 0 0 0 1px #ccc;
+    box-sizing: border-box; /* Ajusta el modelo de caja para incluir el padding y el border */
+    text-align: center; /* Centrar el contenido horizontalmente */
+}
