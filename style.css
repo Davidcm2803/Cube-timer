@@ -74,7 +74,7 @@ body {
 
 @keyframes left {
     0%, 100% {
-        left: -100px; /* Ajuste de posición inicial */
+        left: -100px; 
     }
     70% {
         left: 1300px;
@@ -83,7 +83,7 @@ body {
 
 @keyframes right {
     0%, 100% {
-        right: -100px; /* Ajuste de posición inicial */
+        right: -100px; 
     }
     70% {
         right: 1300px;
@@ -168,3 +168,11 @@ body {
     box-sizing: border-box; /* Ajusta el modelo de caja para incluir el padding y el border */
     text-align: center; /* Centrar el contenido horizontalmente */
 }
+
+
+
+
+
+
+
+

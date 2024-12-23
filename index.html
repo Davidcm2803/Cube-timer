@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cube timer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="/Cube-timer/style.css">
 </head>
 <body>
     <section id="up"></section> 
@@ -21,104 +21,17 @@
             <div class="timesListContainer"></div>
         </div>
     </section>
-    <script>
-        src=
-        crossorigin="anonymus"
-        let stopwatch;
-        let isRunning = false;
-        let startTime, endTime;
-        let savedTimes = [];
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Call generateScramble when the page loads
-            generateScramble();
-        });
-
-        document.addEventListener("keydown", function(event) {
-            if (event.code === "Space") {
-                event.preventDefault();
-            if (isRunning) {
-                stopStopwatch();
-            } else {
-                startStopwatch();
-            }
-            }
-        });
-
-
-        function startStopwatch() {
-            if (!isRunning) {
-                clearInterval(stopwatch);
-                document.querySelector(".stopwatchDisplay").textContent = "0.00";
-                startTime = new Date();
-                stopwatch = setInterval(updateStopwatch, 10);
-                isRunning = true;
-            }
-        }
-
-        function stopStopwatch() {
-            if (isRunning) {
-                endTime = new Date();
-                clearInterval(stopwatch);
-                updateStopwatch();
-                isRunning = false;
-                saveTime(); // Save the current time in the array
-                generateScramble(); // Generate a new scramble when stopping the stopwatch
-                showTimes(); // Show the times in the list
-            }
-        }
-
-        function updateStopwatch() {
-            if (isRunning) {
-                const elapsedTime = (new Date() - startTime) / 1000;
-                document.querySelector(".stopwatchDisplay").textContent = elapsedTime.toFixed(2);
-            } else if (startTime && endTime) {
-                const totalTime = (endTime - startTime) / 1000;
-                document.querySelector(".stopwatchDisplay").textContent = totalTime.toFixed(2);
-            }
-        }
-
-        function saveTime() {
-            const savedTime = parseFloat(document.querySelector(".stopwatchDisplay").textContent);
-            savedTimes.push(savedTime);
-        }
-
-        function showTimes() {
-    const timesListContainer = document.querySelector(".timesListContainer");
-
-    // Limpiar el contenido existente
-    timesListContainer.innerHTML = "";
-
-    // Agregar los nuevos tiempos
-    savedTimes.forEach(time => {
-        const timeBox = document.createElement("div");
-        timeBox.textContent = time.toFixed(2);
-        timeBox.classList.add("timeBox");
-        timesListContainer.appendChild(timeBox);
-    });
-}
-
-
-        function generateScramble() {
-            updateScramble();
-        }
-
-        function updateScramble() {
-            const moves = ["U", "U'", "D", "D'", "R", "R'", "L", "L'", "F", "F'", "B", "B'","U2","D2","R2","L2","F2","B2"];
-            const scramble = [];
-
-            for (let i = 0; i < 20; i++) {
-                const randomIndex = Math.floor(Math.random() * moves.length);
-                scramble.push(moves[randomIndex]);
-            }
-
-            const scrambleText = scramble.join(" ");
-            const scrambleElements = document.querySelectorAll(".scrambleText");
-            
-            scrambleElements.forEach(element => {
-                element.textContent = scrambleText;
-            });
-        }
-    </script>
+<script src="/scripts.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+ 
+
+
