@@ -1,32 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stopwatch</title>
-    <link rel="stylesheet" href="/Cube-timer/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuber Timer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <section id="up"></section> 
-    <section id="down"></section> 
-    <section id="left"></section> 
-    <section id="right"></section> 
 
-    <section class="stopwatch">
-        <div class="topbar">
-            <div class="scrambleText"></div>
-        </div>
-        <div class="stopwatchDisplay">0.00</div>
-        <div class="timesContainer">
-            <div class="timesListContainer"></div>
-        </div>
-    </section>
-<script src="/scripts.js"></script>
+  <div class="container">
+    <!-- Sección de Scramble -->
+    <div class="scramble" id="scramble">R U R' U'</div>
+
+    <!-- Visualización del cubo -->
+    <div class="cube-net">
+      <!-- Up face -->
+      <div class="face face-u" id="face-u">
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+        <div class="sticker white"></div>
+      </div>
+      <!-- Left face -->
+      <div class="face face-l" id="face-l">
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+        <div class="sticker orange"></div>
+      </div>
+      <!-- Front face -->
+      <div class="face face-f" id="face-f">
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+        <div class="sticker green"></div>
+      </div>
+      <!-- Right face -->
+      <div class="face face-r" id="face-r">
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+        <div class="sticker red"></div>
+      </div>
+      <!-- Back face -->
+      <div class="face face-b" id="face-b">
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+        <div class="sticker blue"></div>
+      </div>
+      <!-- Down face -->
+      <div class="face face-d" id="face-d">
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+        <div class="sticker yellow"></div>
+      </div>
+    </div>
+
+    <!-- Cronómetro -->
+    <div class="timer" id="timer">0.00</div>
+
+    <!-- Estadísticas -->
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-label">Mejor</div>
+        <div class="stat-value" id="best">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Media</div>
+        <div class="stat-value" id="average">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Intentos</div>
+        <div class="stat-value" id="count">0</div>
+      </div>
+    </div>
+
+    <!-- Lista de Tiempos -->
+    <div class="times-list">
+      <div class="times-header">
+        <h3>Tiempos</h3>
+        <button id="clearTimes">Limpiar Tiempos</button>
+      </div>
+      <div id="timesList"></div>
+    </div>
+
+  </div>
+
+  <script src="/scripts.js"></script>
+
 </body>
+
 </html>
-
-
-
 
 
 
